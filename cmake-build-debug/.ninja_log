@@ -1,0 +1,23 @@
+# ninja log v5
+2	363	6604096024627098	CMakeFiles/ImageProcessing.dir/main.cpp.obj	750069121e48b9f8
+363	501	6604096026123100	ImageProcessing.exe	89be2b29706ebb5b
+1	277	6604112906783247	build.ninja	40c6b2ec55417d95
+19	485	6604114679492862	CMakeFiles/ImageProcessing.dir/src/ImageProcess.cpp.obj	8a05de203e0a8d0d
+3	369	6604114819767837	CMakeFiles/ImageProcessing.dir/main.cpp.obj	750069121e48b9f8
+370	497	6604114821054627	ImageProcessing.exe	6687e208190ba8
+3	347	6604114933202091	CMakeFiles/ImageProcessing.dir/main.cpp.obj	750069121e48b9f8
+347	474	6604114934467316	ImageProcessing.exe	6687e208190ba8
+2	340	6604115049620834	CMakeFiles/ImageProcessing.dir/main.cpp.obj	750069121e48b9f8
+341	481	6604115051017097	ImageProcessing.exe	6687e208190ba8
+3	342	6604115744584225	CMakeFiles/ImageProcessing.dir/main.cpp.obj	750069121e48b9f8
+343	471	6604115745848123	ImageProcessing.exe	6687e208190ba8
+3	349	6604116336871999	CMakeFiles/ImageProcessing.dir/main.cpp.obj	750069121e48b9f8
+350	479	6604116338148631	ImageProcessing.exe	6687e208190ba8
+2	347	6604116714316440	CMakeFiles/ImageProcessing.dir/main.cpp.obj	750069121e48b9f8
+347	476	6604116715574285	ImageProcessing.exe	6687e208190ba8
+20	350	6604117581178851	CMakeFiles/ImageProcessing.dir/main.cpp.obj	750069121e48b9f8
+2	352	6604117581208778	CMakeFiles/ImageProcessing.dir/src/ImageProcess.cpp.obj	8a05de203e0a8d0d
+352	491	6604117582565154	ImageProcessing.exe	6687e208190ba8
+3	364	6604118233067179	CMakeFiles/ImageProcessing.dir/main.cpp.obj	750069121e48b9f8
+19	381	6604118233237229	CMakeFiles/ImageProcessing.dir/src/ImageProcess.cpp.obj	8a05de203e0a8d0d
+381	523	6604118234643471	ImageProcessing.exe	6687e208190ba8
