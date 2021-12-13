@@ -52,10 +52,10 @@ RM = "C:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\bin\cmake.exe" -E rm
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\brAiN\Downloads\ImageProcessing
+CMAKE_SOURCE_DIR = C:\Users\brAiN\CLionProjects\ImageProcessing
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\brAiN\Downloads\ImageProcessing\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\brAiN\CLionProjects\ImageProcessing\cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/ImageProcessing.dir/depend.make
@@ -71,30 +71,30 @@ include CMakeFiles/ImageProcessing.dir/flags.make
 CMakeFiles/ImageProcessing.dir/main.cpp.obj: CMakeFiles/ImageProcessing.dir/flags.make
 CMakeFiles/ImageProcessing.dir/main.cpp.obj: ../main.cpp
 CMakeFiles/ImageProcessing.dir/main.cpp.obj: CMakeFiles/ImageProcessing.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\brAiN\Downloads\ImageProcessing\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/ImageProcessing.dir/main.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ImageProcessing.dir/main.cpp.obj -MF CMakeFiles\ImageProcessing.dir\main.cpp.obj.d -o CMakeFiles\ImageProcessing.dir\main.cpp.obj -c C:\Users\brAiN\Downloads\ImageProcessing\main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\brAiN\CLionProjects\ImageProcessing\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/ImageProcessing.dir/main.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ImageProcessing.dir/main.cpp.obj -MF CMakeFiles\ImageProcessing.dir\main.cpp.obj.d -o CMakeFiles\ImageProcessing.dir\main.cpp.obj -c C:\Users\brAiN\CLionProjects\ImageProcessing\main.cpp
 
 CMakeFiles/ImageProcessing.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ImageProcessing.dir/main.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\brAiN\Downloads\ImageProcessing\main.cpp > CMakeFiles\ImageProcessing.dir\main.cpp.i
+	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\brAiN\CLionProjects\ImageProcessing\main.cpp > CMakeFiles\ImageProcessing.dir\main.cpp.i
 
 CMakeFiles/ImageProcessing.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ImageProcessing.dir/main.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\brAiN\Downloads\ImageProcessing\main.cpp -o CMakeFiles\ImageProcessing.dir\main.cpp.s
+	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\brAiN\CLionProjects\ImageProcessing\main.cpp -o CMakeFiles\ImageProcessing.dir\main.cpp.s
 
 CMakeFiles/ImageProcessing.dir/Image.cpp.obj: CMakeFiles/ImageProcessing.dir/flags.make
 CMakeFiles/ImageProcessing.dir/Image.cpp.obj: ../Image.cpp
 CMakeFiles/ImageProcessing.dir/Image.cpp.obj: CMakeFiles/ImageProcessing.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\brAiN\Downloads\ImageProcessing\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/ImageProcessing.dir/Image.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ImageProcessing.dir/Image.cpp.obj -MF CMakeFiles\ImageProcessing.dir\Image.cpp.obj.d -o CMakeFiles\ImageProcessing.dir\Image.cpp.obj -c C:\Users\brAiN\Downloads\ImageProcessing\Image.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\brAiN\CLionProjects\ImageProcessing\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/ImageProcessing.dir/Image.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ImageProcessing.dir/Image.cpp.obj -MF CMakeFiles\ImageProcessing.dir\Image.cpp.obj.d -o CMakeFiles\ImageProcessing.dir\Image.cpp.obj -c C:\Users\brAiN\CLionProjects\ImageProcessing\Image.cpp
 
 CMakeFiles/ImageProcessing.dir/Image.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ImageProcessing.dir/Image.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\brAiN\Downloads\ImageProcessing\Image.cpp > CMakeFiles\ImageProcessing.dir\Image.cpp.i
+	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\brAiN\CLionProjects\ImageProcessing\Image.cpp > CMakeFiles\ImageProcessing.dir\Image.cpp.i
 
 CMakeFiles/ImageProcessing.dir/Image.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ImageProcessing.dir/Image.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\brAiN\Downloads\ImageProcessing\Image.cpp -o CMakeFiles\ImageProcessing.dir\Image.cpp.s
+	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\brAiN\CLionProjects\ImageProcessing\Image.cpp -o CMakeFiles\ImageProcessing.dir\Image.cpp.s
 
 # Object files for target ImageProcessing
 ImageProcessing_OBJECTS = \
@@ -110,7 +110,7 @@ ImageProcessing.exe: CMakeFiles/ImageProcessing.dir/build.make
 ImageProcessing.exe: CMakeFiles/ImageProcessing.dir/linklibs.rsp
 ImageProcessing.exe: CMakeFiles/ImageProcessing.dir/objects1.rsp
 ImageProcessing.exe: CMakeFiles/ImageProcessing.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\brAiN\Downloads\ImageProcessing\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable ImageProcessing.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\brAiN\CLionProjects\ImageProcessing\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable ImageProcessing.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\ImageProcessing.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -122,6 +122,6 @@ CMakeFiles/ImageProcessing.dir/clean:
 .PHONY : CMakeFiles/ImageProcessing.dir/clean
 
 CMakeFiles/ImageProcessing.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\brAiN\Downloads\ImageProcessing C:\Users\brAiN\Downloads\ImageProcessing C:\Users\brAiN\Downloads\ImageProcessing\cmake-build-debug C:\Users\brAiN\Downloads\ImageProcessing\cmake-build-debug C:\Users\brAiN\Downloads\ImageProcessing\cmake-build-debug\CMakeFiles\ImageProcessing.dir\DependInfo.cmake --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\brAiN\CLionProjects\ImageProcessing C:\Users\brAiN\CLionProjects\ImageProcessing C:\Users\brAiN\CLionProjects\ImageProcessing\cmake-build-debug C:\Users\brAiN\CLionProjects\ImageProcessing\cmake-build-debug C:\Users\brAiN\CLionProjects\ImageProcessing\cmake-build-debug\CMakeFiles\ImageProcessing.dir\DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/ImageProcessing.dir/depend
 

@@ -164,8 +164,8 @@
 	"kind" : "cmakeFiles",
 	"paths" : 
 	{
-		"build" : "C:/Users/brAiN/Downloads/ImageProcessing/cmake-build-debug",
-		"source" : "C:/Users/brAiN/Downloads/ImageProcessing"
+		"build" : "C:/Users/brAiN/CLionProjects/ImageProcessing/cmake-build-debug",
+		"source" : "C:/Users/brAiN/CLionProjects/ImageProcessing"
 	},
 	"version" : 
 	{

@@ -8,8 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "C:/Users/brAiN/Downloads/ImageProcessing/Image.cpp" "CMakeFiles/ImageProcessing.dir/Image.cpp.obj" "gcc" "CMakeFiles/ImageProcessing.dir/Image.cpp.obj.d"
-  "C:/Users/brAiN/Downloads/ImageProcessing/main.cpp" "CMakeFiles/ImageProcessing.dir/main.cpp.obj" "gcc" "CMakeFiles/ImageProcessing.dir/main.cpp.obj.d"
+  "C:/Users/brAiN/CLionProjects/ImageProcessing/Image.cpp" "CMakeFiles/ImageProcessing.dir/Image.cpp.obj" "gcc" "CMakeFiles/ImageProcessing.dir/Image.cpp.obj.d"
+  "C:/Users/brAiN/CLionProjects/ImageProcessing/main.cpp" "CMakeFiles/ImageProcessing.dir/main.cpp.obj" "gcc" "CMakeFiles/ImageProcessing.dir/main.cpp.obj.d"
   )
 
 # Targets to which this target links.

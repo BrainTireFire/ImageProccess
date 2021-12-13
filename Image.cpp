@@ -3,11 +3,104 @@
 //
 
 #include "Headers/Image.h"
+#include <stdlib.h>
 #include <iostream>
-#include <fstream>
+#include <cmath>
 
+using namespace std;
+
+Image::Image() {
+    rows = 0;
+    cols = 0;
+    gray = 0;
+    pixelVal = NULL;
+}
+
+/**
+ *
+ */
+Image::Image(int numRows, int numCols, int grayLevels) {
+    rows = numRows;
+    cols = numCols;
+    gray = grayLevels;
+
+    pixelVal = new int*[rows];
+    for (int i = 0; i < rows; i++) {
+        pixelVal[i] = new int[cols];
+        for (int j = 0; j < cols; j++) {
+            pixelVal[i][j] = 0;
+        }
+    }
+}
+
+Image::Image(const Image& oldImage) {
+    rows = oldImage.rows;
+    cols = oldImage.cols;
+    gray = oldImage.gray;
+
+    pixelVal = new int* [rows];
+    for (int i = 0; i < rows; i++) {
+        pixelVal[i] = new int [cols];
+        for (int j = 0; j < cols; j++)
+            pixelVal[i][j] = oldImage.pixelVal[i][j];
+    }
+}
+
+/**
+ * Destruktor :) innym slowem pozbywa sie zmiennych z pamieci
+ */
+Image::~Image() {
+    rows = 0;
+    cols = 0;
+    gray = 0;
+
+    for (int i = 0; i < rows; i++) {
+        delete pixelVal[rows];
+    }
+
+    delete pixelVal;
+}
+
+/**
+ * Pobiera row and col i z tego zwraca gray value danego pixela
+ */
+int Image::getPixelVal(int row, int col) {
+    return pixelVal[row][col];
+}
+
+void Image::setPixelVal(int row, int col, int value) {
+    pixelVal[row][col] = value;
+}
+
+
+/**
+ * Sprawdzanie czy pisel jest w tym obrazie, adekwatnie zwraca jest true lub nie ma false
+ */
+bool Image::inBounds(int row, int col) {
+    if (row >= rows || row < 0 || col >= cols || col < 0)
+        return false;
+    return true;
+}
+
+Image Image::threshold(int threshold) {
+    int pixel = 0, val = 0;
+    Image newImage(rows, cols, gray);
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            pixel = this->getPixelVal(i,j);
+            val = pixel >= threshold ? gray : 0;
+
+            newImage.setPixelVal(i,j, val);
+
+        }
+    }
+
+    return newImage;
+}
+
+/*
 Color::Color()
-        : r(0), g(0), b(0)
+    : r(0), g(0), b(0)
 {
 }
 
@@ -22,10 +115,15 @@ Color::~Color() {
 }
 
 Image::Image(int width, int heigt)
-        : m_width(width), m_height(heigt), m_colors(std::vector<Color>(width*heigt))
+    : m_width(width), m_height(heigt), m_colors(std::vector<Color>(width*heigt))
 {
 
 }
+
+Image::Image() {
+
+}
+
 
 Image::~Image() {
 
@@ -42,13 +140,66 @@ void Image::SetColor(const Color &color, int x, int y)
     m_colors[y * m_width + x].b = color.b;
 }
 
+void Image::Read(const char* path)
+{
+    std::ifstream f;
+    f.open(path, std::ios::in | std::ios::binary);
+
+    if (!f.is_open())
+    {
+        std::cout << "File could not be opended" << std::endl;
+    }
+
+    const int fileHeaderSize = 14;
+    const int informationHeaderSize = 40;
+
+    unsigned char fileHeader[fileHeaderSize];
+    f.read(reinterpret_cast<char*>(fileHeader), fileHeaderSize);
+/*
+    if (fileHeader[0] != 'B' || fileHeader[1] != 'M')
+    {
+        std::cout << "The specified path is not a bitmap image" << std::endl;
+        f.close();
+        return;
+    }
+    */
+/*
+unsigned char infomationHeader[informationHeaderSize];
+f.read(reinterpret_cast<char*>(infomationHeader), informationHeaderSize);
+
+int fileSize = fileHeader[2] + (fileHeader[3] << 8) + (fileHeader[4] << 16) + (fileHeader[5] << 24);
+m_width = infomationHeader[4] + (infomationHeader[5] << 8) + (infomationHeader[6] << 16) + (infomationHeader[7] << 24);
+m_height = infomationHeader[8] + (infomationHeader[9] << 8) + (infomationHeader[10] << 16) + (infomationHeader[11] << 24);
+
+m_colors.resize(m_width * m_height);
+
+const int paddingAmount = ((4 - (m_width * 3) % 4) % 4);
+
+for (int y = 0; y < m_height; ++y) {
+for (int x = 0; x < m_width; ++x) {
+unsigned char color[3];
+f.read(reinterpret_cast<char*>(color), 3);
+
+m_colors[y * m_width + x].r = static_cast<float>(color[2]) / 255.0f;
+m_colors[y * m_width + x].g = static_cast<float>(color[2]) / 255.0f;
+m_colors[y * m_width + x].b = static_cast<float>(color[2]) / 255.0f;
+}
+
+f.ignore(paddingAmount);
+}
+
+f.close();
+
+std::cout << "File read" << std::endl;
+}
+
 void Image::Export(const char *path) {
     std::ofstream f;
     f.open(path, std::ios::out | std::ios::binary);
 
     if(!f.is_open())
     {
-        std::cout << "File could not be opened\m";
+        std::cout << "File could not be opened\n";
         return;
     }
 
@@ -139,9 +290,9 @@ void Image::Export(const char *path) {
 
     for (int y = 0; y < m_height; y++) {
         for (int x = 0; x < m_width; x++) {
-            unsigned char r =static_cast<unsigned char>(Getcolor(x, y).r * 255.0f);
-            unsigned char g =static_cast<unsigned char>(Getcolor(x, y).g * 255.0f);
-            unsigned char b =static_cast<unsigned char>(Getcolor(x, y).b * 255.0f);
+            unsigned char r =static_cast<unsigned char>(Getcolor(x, y).r * 300.0f);
+            unsigned char g =static_cast<unsigned char>(Getcolor(x, y).g * 300.0f);
+            unsigned char b =static_cast<unsigned char>(Getcolor(x, y).b * 300.0f);
 
             unsigned char color[] = {b, g, r};
             f.write(reinterpret_cast<char*>(color), 3);
@@ -153,3 +304,56 @@ void Image::Export(const char *path) {
 
     std::cout << "File created\n";
 }
+
+void Image::Copy(const char *path1, const char *path2)
+{
+    std::ifstream fin(path1, std::ios::binary);
+    std::ofstream fout(path2, std::ios::binary);
+
+    char byte;
+
+    while (fin.get(byte) )
+    {
+        fout.put(byte);
+    }
+}
+
+void Image::BrigthnessUp(const char *path1, const char *path2, int brightness) {
+    std::ifstream fin(path1, std::ios::binary);
+    std::ofstream fout(path2, std::ios::binary);
+
+    const int fileHeaderSize = 14;
+    const int informationHeaderSize = 40;
+
+    unsigned char fileHeader[fileHeaderSize];
+    fin.read(reinterpret_cast<char*>(fileHeader), fileHeaderSize);
+/*
+    if (fileHeader[0] != 'B' || fileHeader[1] != 'M')
+    {
+        std::cout << "The specified path is not a bitmap image" << std::endl;
+        f.close();
+        return;
+    }
+
+
+    unsigned char infomationHeader[informationHeaderSize];
+    fin.read(reinterpret_cast<char*>(infomationHeader), informationHeaderSize);
+
+    fileSize =  fileHeader[2] + (fileHeader[3] << 8) + (fileHeader[4] << 16) + (fileHeader[5] << 24);
+    m_width = infomationHeader[4] + (infomationHeader[5] << 8) + (infomationHeader[6] << 16) + (infomationHeader[7] << 24);
+    m_height = infomationHeader[8] + (infomationHeader[9] << 8) + (infomationHeader[10] << 16) + (infomationHeader[11] << 24);
+
+
+    for(int i =0;i<fileSize;i++)
+    {
+        int temp = fin.binary+ brightness;
+        fout.binary =  (temp > 255)? 255 :temp;
+    }
+}
+*/
+
+
+
+
+
+
