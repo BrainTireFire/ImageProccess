@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include "Headers/Image.h"
 #include "ImageOperations.hpp"
+#include <algorithm>
+#include <cstring>
 
 #include <crtdbg.h>
 
@@ -17,6 +19,13 @@ struct BMP {
     int size;
 };
 
+struct File {
+    string fileNameIn;
+};
+
+void menuPGM(string flag);
+void menuBMP(string flag);
+void setFileName(string fileName);
 BMP readBMP2(string filename);
 void writeBMP2(string filename, BMP image);
 BMP rotate180Degree(BMP image, double degree);
@@ -24,13 +33,28 @@ BMP rotate180Degree(BMP image, double degree);
 BMP readBMP(string filename);
 void writeBMP(string filename, BMP image);
 BMP rotate(BMP image, double degree);
+BMP negatyw(BMP image);
 
 int main() {
     int rows = 0, cols = 0, grayscale = 0;
     int val;
     bool type;
+    string flag = "";
 
-    //ofstream ofile("output.pgm", std::ios::out);
+    cout << "Wpisz flageinazwe pliku" << endl;
+    getline(cin, flag);
+
+    if (flag.find("-i") != std::string::npos) {
+        if (flag.find(".pgm") != std::string::npos) {
+            menuPGM(flag);
+        }else if (flag.find(".bmp") != std::string::npos) {
+            menuBMP(flag);
+        } else {
+            cout << "Ten format jest nie wspierany!" << endl;
+        }
+    }
+
+
 
     //Image imageIn = readImage("../images/lena.pgm");
     //Image imageIn2 = readImage("../images/man.pgm");
@@ -38,35 +62,80 @@ int main() {
 
     //Image imageOut = gaussFilter(imageIn3);
 
+
+
+
     //Image imageOut = mirror(imageIn);
 
-    //BMP image = readBMP("../images/lena.bmp");
+   // BMP image = readBMP("../images/girlface.bmp");
     //image = rotate(image,180);
+   // image = negatyw(image);
    // writeBMP("lena_Output.bmp", image);
 
-    BMP image2 = readBMP2("../images/lena.bmp");
-    image2 = rotate180Degree(image2, 180);
-    writeBMP2("Out2.bmp", image2);
+   // BMP image2 = readBMP("../images/lena.bmp");
+    //image2 = rotate180Degree(image2, 180);
+    //image2 = rotate(image2,180);
+   // writeBMP("Out2.bmp", image2);
+    //Image imageOut = gaussFilter(imageIn);
+    //Image imageOut = sobelFilter(imageIn);
 
 
     //Image imageOut = rotateImage(imageIn, 180);
 
+    //Image imageOut=linearContrastSaturation(imageIn,100,200);
+   //Image imageOut = negative(imageIn);
 
 
 
 
-/*
-    ofile << "P2\n" << imageOut.cols << " " << imageOut.rows << "\n255\n";
-    for (int i = 0; i < imageOut.rows; i++) {
-        for (int j = 0; j < imageOut.cols; j++) {
-            ofile << imageOut.getPixelVal(i, j) << endl;
-
-        }
-
-    }
-    */
 
     return 0;
+}
+void menuPGM(string flag) {
+    string fileName = "";
+    string flag2 = "";
+    ofstream ofile("output.pgm", std::ios::out);
+
+    fileName = flag.erase(0,3);
+    int n = fileName.length();
+    char char_array[n + 1];
+    Image imageIn = readImage(strcpy(char_array, fileName.c_str()));
+
+    cout << endl;
+    cout << "Wpisz kolejna flage" << endl;
+    cin >> flag2;
+
+    if (flag2.find("-n") != std::string::npos) {
+        cout << "Negatyw";
+
+        Image imageOut = negative(imageIn);
+
+        ofile << "P2\n" << imageOut.cols << " " << imageOut.rows << "\n255\n";
+        for (int i = 0; i < imageOut.rows; i++) {
+            for (int j = 0; j < imageOut.cols; j++) {
+                ofile << imageOut.getPixelVal(i, j) << endl;
+            }
+        }
+    } else if (flag2.find("-g") != std::string::npos) {
+        cout << "Sobel";
+
+        Image imageOut = sobelFilter(imageIn);
+
+        ofile << "P2\n" << imageOut.cols << " " << imageOut.rows << "\n255\n";
+        for (int i = 0; i < imageOut.rows; i++) {
+            for (int j = 0; j < imageOut.cols; j++) {
+                ofile << imageOut.getPixelVal(i, j) << endl;
+            }
+        }
+    }
+
+}
+
+void menuBMP(string flag) {
+    string fileName = "";
+    ofstream ofile("output.pgm", std::ios::out);
+
+   cout << "test";
 }
 
 void writeBMP2(string filename, BMP image) {
@@ -136,13 +205,12 @@ BMP rotate180Degree(BMP image, double degree) {
             pixels[(x * W + y) * 3 + 1] = image.pixels[((H - 1 - x) * W + (W - 1 - y)) * 3 + 1];
             pixels[(x * W + y) * 3 + 2] = image.pixels[((H - 1 - x) * W + (W - 1 - y)) * 3 + 2];
         }
+        newImage.pixels[x] = pixels[x];
     }
 
-    newImage.pixels = pixels;
+   // newImage.pixels = pixels;
     return newImage;
 }
-
-
 
 BMP readBMP(string filename) {
     BMP image;
@@ -184,6 +252,23 @@ void writeBMP(string filename, BMP image) {
     fclose(out);
 }
 
+BMP negatyw(BMP image) {
+    BMP newImage = image;
+    unsigned char *pixels = new unsigned char[image.size];
+
+    for (int i = 0; i < image.height; i++) {
+        for (int j = 0; j < image.width; j++) {
+            //pixels[i] = 255 - i*image.width;
+            //newImage.pixels[i*j] = 255 - image.width;
+            //newImage.pixels[i] = pixels[i];
+            pixels[i*newImage.width+j] = 255 - image.pixels[i*image.width+j];
+            newImage.pixels[i] = pixels[i];
+        }
+    }
+
+    return newImage;
+}
+
 BMP rotate(BMP image, double degree) {
     BMP newImage = image;
     unsigned char *pixels = new unsigned char[image.size];
@@ -208,8 +293,9 @@ BMP rotate(BMP image, double degree) {
                 pixels[(y * image.height + x) * 3 + 1] = image.pixels[(yy * image.height + xx) * 3 + 1];
                 pixels[(y * image.height + x) * 3 + 2] = image.pixels[(yy * image.height + xx) * 3 + 2];
             }
+            newImage.pixels[x] = pixels[y];
         }
     }
-    newImage.pixels = pixels;
+
     return newImage;
 }

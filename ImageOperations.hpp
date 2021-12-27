@@ -41,6 +41,7 @@ Image readImage(char fileName[])
     stringstream ss;
     string inputLine = "";
 
+
     if (!inImage)
     {
         cout << "Cannot read image:" << fileName << endl;
@@ -155,9 +156,6 @@ Image convolution(Image& im, double kernel[SIZE][SIZE], int kSize, int norm) {
     //int mm = 0, nn = 0, ii = 0, jj = 0;
     double sum = 0;
 
-
-
-
     for (int i = 0; i < im.rows; ++i) // rows
     {
         for (int j = 0; j < im.cols; ++j) // columns
@@ -182,8 +180,6 @@ Image convolution(Image& im, double kernel[SIZE][SIZE], int kSize, int norm) {
                         jj = jj - 1;
                     if (ii >= 0 && ii < im.rows && jj >= 0 && jj < im.cols)
                         sum += im.getPixelVal(ii, jj) * kernel[mm][nn];
-
-
                 }
             }
 
@@ -200,13 +196,98 @@ Image convolution(Image& im, double kernel[SIZE][SIZE], int kSize, int norm) {
 
 Image gaussFilter(Image& im) {
     double gaussBlur[3][3] = {
-            {1, 2, 1},
-            {2, 4, 2},
-            {1, 2, 1}
+            {7, 7, 7},
+            {2, 5, 2},
+            {9, 2, 1}
     };
     return (convolution(im, gaussBlur, 3, 9));
 
 }
+
+int maxPixel(Image &im) {
+    int maxi = 0, pixel = 0;
+    int val = 0;
+
+    for (int i = 0; i < im.rows; i++) {
+        for (int j = 0; j < im.cols; j++) {
+            pixel = im.getPixelVal(i, j);
+            maxi = (int) max(pixel, maxi);
+        }
+
+    }
+    return maxi;
+}
+
+int minPixel(Image &im) {
+    int mini = im.gray, pixel = 0;
+    int val = 0;
+
+    for (int i = 0; i < im.rows; i++) {
+        for (int j = 0; j < im.cols; j++) {
+            pixel = im.getPixelVal(i, j);
+            mini = (int) min(pixel, mini);
+
+        }
+
+    }
+    return mini;
+}
+
+Image linearContrastSaturation(Image& im, double sMin, double sMax) {
+    //Amelioration de contrast par transformation lineaire avec saturation
+
+    if ((sMin > sMax) || (sMin < minPixel(im)) || (sMax > maxPixel(im))) {
+        //Test simples pour niveaux de saturation
+        cout << "Valeurs de saturation invalides" << endl;
+        exit(1);
+    }
+    Image newImage = Image(im.rows, im.cols, im.gray);
+    int val = 0, pixel = 0;
+
+    for (int i = 0; i < im.rows; i++) {
+        for (int j = 0; j < im.cols; j++) {
+            pixel = im.getPixelVal(i, j);
+            val = im.gray * (pixel - sMin) / (sMax - sMin);
+            val = val < 0 ? 0 : val;
+            val = val > im.gray ? im.gray : val;
+            newImage.setPixelVal(i, j, val);
+        }
+
+    }
+
+    return newImage;
+}
+
+Image negative(Image& im) {
+    Image newImage = Image(im.rows, im.cols, im.gray);
+    int val = 0, pixel = 0;
+
+    for (int i = 0; i < im.rows; i++) {
+        for (int j = 0; j < im.cols; j++) {
+            pixel = im.getPixelVal(i, j);
+            val = 255 - pixel;
+            newImage.setPixelVal(i, j, val);
+        }
+
+    }
+
+    return newImage;
+}
+
+Image sobelFilter(Image &im)
+{
+    double kern1[3][3] = {
+            {-1, -2, -1},
+            {0, 0, 0},
+            {1, 2, 1}};
+    double kern2[3][3] = {
+            {-1, 0, 1},
+            {-2, 0, 2},
+            {-1, 0, 1}};
+    Image temp = Image(convolution(im, kern1, 3, 1));
+    return (convolution(temp, kern2, 3, 1));
+}
+
 
 
 
