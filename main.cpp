@@ -3,98 +3,87 @@
 #include <stdlib.h>
 #include "Headers/Image.h"
 #include "ImageOperations.hpp"
+#include "ImageOperationsBMP.hpp"
+#include "ImageOperaBMP.h"
+#include "ImageOperaPPM.hpp"
+#include "ImagePPM.h"
 #include <algorithm>
 #include <cstring>
 
 #include <crtdbg.h>
 
 double PI = 3.141592653589793238462643383279;
-struct BMP {
-    int width;
-    int height;
-    unsigned char header[54];
-    unsigned char *pixels;
-    int row_padded;
-    long long int size_padded;
-    int size;
-};
+
 
 struct File {
     string fileNameIn;
 };
 
-void menuPGM(string flag);
-void menuBMP(string flag);
+ImageOperaBMP fileCreateBMP(string fileNameIn, string fileNameOut);
+void fileColsAndRows(Image imageOut, string fileOut);
+void menuPGM(string flag, string fileOut);
+void menuPPM(string flag, string fileOut);
 void setFileName(string fileName);
-BMP readBMP2(string filename);
-void writeBMP2(string filename, BMP image);
-BMP rotate180Degree(BMP image, double degree);
+void fileColsAndRowsPPM(ImagePPM imageOut, string fileOut);
 
-BMP readBMP(string filename);
-void writeBMP(string filename, BMP image);
-BMP rotate(BMP image, double degree);
-BMP negatyw(BMP image);
 
 int main() {
     int rows = 0, cols = 0, grayscale = 0;
     int val;
     bool type;
+    string flagOut = "";
     string flag = "";
 
-    cout << "Wpisz flageinazwe pliku" << endl;
+    cout << "Wpisz flage i nazwe pliku" << endl;
     getline(cin, flag);
-
     if (flag.find("-i") != std::string::npos) {
-        if (flag.find(".pgm") != std::string::npos) {
-            menuPGM(flag);
-        }else if (flag.find(".bmp") != std::string::npos) {
-            menuBMP(flag);
-        } else {
-            cout << "Ten format jest nie wspierany!" << endl;
+
+        cout << "Wpisz flage -o i podaj sciezke z nazwa do pliku koncowego" << endl;
+        getline(cin, flagOut);
+
+        if (flagOut.find("-o") != std::string::npos) {
+            if (flag.find(".pgm") != std::string::npos && flagOut.find(".pgm") != std::string::npos) {
+                cout << flag;
+                flagOut = flagOut.erase(0,3);
+                menuPGM(flag, flagOut);
+            }else if (flag.find(".ppm") != std::string::npos && flagOut.find(".ppm") != std::string::npos) {
+                flagOut = flagOut.erase(0,3);
+                menuPPM(flag, flagOut);
+            } else {
+                cout << "Ten format jest nie wspierany!" << endl;
+            }
         }
     }
 
-
+    //BMP image = readBMP(fileName);
+    //image = rotate(image,180);
+    //image = negatyw(image);
+    //writeBMP("girlface2_Output.bmp", image);
 
     //Image imageIn = readImage("../images/lena.pgm");
     //Image imageIn2 = readImage("../images/man.pgm");
     //Image imageIn3 = readImage("../images/aya.pgm");
 
-    //Image imageOut = gaussFilter(imageIn3);
-
-
-
 
     //Image imageOut = mirror(imageIn);
 
-   // BMP image = readBMP("../images/girlface.bmp");
-    //image = rotate(image,180);
-   // image = negatyw(image);
-   // writeBMP("lena_Output.bmp", image);
 
    // BMP image2 = readBMP("../images/lena.bmp");
     //image2 = rotate180Degree(image2, 180);
     //image2 = rotate(image2,180);
    // writeBMP("Out2.bmp", image2);
-    //Image imageOut = gaussFilter(imageIn);
-    //Image imageOut = sobelFilter(imageIn);
 
 
     //Image imageOut = rotateImage(imageIn, 180);
 
-    //Image imageOut=linearContrastSaturation(imageIn,100,200);
-   //Image imageOut = negative(imageIn);
-
-
-
-
+    //Image imageOut=linearFilter(imageIn,100,200);
 
     return 0;
 }
-void menuPGM(string flag) {
+
+void menuPGM(string flag, string fileOut) {
     string fileName = "";
     string flag2 = "";
-    ofstream ofile("output.pgm", std::ios::out);
 
     fileName = flag.erase(0,3);
     int n = fileName.length();
@@ -103,42 +92,160 @@ void menuPGM(string flag) {
 
     cout << endl;
     cout << "Wpisz kolejna flage" << endl;
-    cin >> flag2;
+    getline(cin, flag2);
+
+    cout << flag2;
 
     if (flag2.find("-n") != std::string::npos) {
-        cout << "Negatyw";
-
+        cout << "Negatyw" << endl;;
         Image imageOut = negative(imageIn);
+        fileColsAndRows(imageOut, fileOut);
 
-        ofile << "P2\n" << imageOut.cols << " " << imageOut.rows << "\n255\n";
-        for (int i = 0; i < imageOut.rows; i++) {
-            for (int j = 0; j < imageOut.cols; j++) {
-                ofile << imageOut.getPixelVal(i, j) << endl;
-            }
-        }
     } else if (flag2.find("-g") != std::string::npos) {
-        cout << "Sobel";
+        if (flag2.find("1") != std::string::npos){
+            cout << "Sobel" << endl;
+            Image imageOut = sobelFilter(imageIn);
+            fileColsAndRows(imageOut, fileOut);
+        } else if (flag2.find("2") != std::string::npos) {
+            cout << "Prewitt" << endl;
+            Image imageOut = prewittFilter(imageIn);
+            fileColsAndRows(imageOut, fileOut);
+        } else if (flag2.find("3") != std::string::npos) {
+            cout << "Robert" << endl;
+            Image imageOut = robertFilter(imageIn);
+            fileColsAndRows(imageOut, fileOut);
+        }
 
-        Image imageOut = sobelFilter(imageIn);
+    } else if (flag2.find("-rs") != std::string::npos) {
+        cout << "Zmiana rozdzielczonsci" << endl;
 
-        ofile << "P2\n" << imageOut.cols << " " << imageOut.rows << "\n255\n";
-        for (int i = 0; i < imageOut.rows; i++) {
-            for (int j = 0; j < imageOut.cols; j++) {
-                ofile << imageOut.getPixelVal(i, j) << endl;
-            }
+    } else if (flag2.find("-b") != std::string::npos) {
+        cout << "Rozmycie obrazu" << endl;
+        Image imageOut = gaussFilter(imageIn);
+        fileColsAndRows(imageOut, fileOut);
+
+    } else if (flag2.find("-dn") != std::string::npos) {
+        cout << "Odszumianie obrazu" << endl;
+
+    } else if (flag2.find("-ib") != std::string::npos) {
+        cout << "Odszumianie obrazu" << endl;
+
+    } else if (flag2.find("-e") != std::string::npos) {
+        cout << "Erozja obrazu" << endl;
+        Image imageOut=erosion(imageIn);
+        fileColsAndRows(imageOut, fileOut);
+
+    } else if (flag2.find("-d") != std::string::npos) {
+        cout << "Dylatacja obrazu" << endl;
+
+
+    } else if (flag2.find("-r") != std::string::npos) {
+        cout << "Obracanie obrazu" << endl;
+
+    }  else if (flag2.find("-h") != std::string::npos) {
+        cout << "Pomoc" << endl;
+
+
+    }  else {
+        cout << "Pomoc" << endl;
+
+    }
+}
+
+
+void menuPPM(string flag, string fileOut) {
+    string fileName = "";
+    string flag2 = "";
+
+    fileName = flag.erase(0,3);
+    int n = fileName.length();
+    char char_array[n + 1];
+    ImagePPM imageIn = readImage2(strcpy(char_array, fileName.c_str()));
+
+    cout << endl;
+    cout << "Wpisz kolejna flage" << endl;
+    getline(cin, flag2);
+
+    if (flag2.find("-n") != std::string::npos) {
+        cout << "Negatyw" << endl;;
+        ImagePPM imageOut = negativePPM(imageIn);
+        fileColsAndRowsPPM(imageOut, fileOut);
+
+    } else if (flag2.find("-g") != std::string::npos) {
+        if (flag2.find("1") != std::string::npos){
+            cout << "Sobel" << endl;
+            ImagePPM imageOut = sobelFilterPPM(imageIn);
+            fileColsAndRowsPPM(imageOut, fileOut);
+        } else if (flag2.find("2") != std::string::npos) {
+            cout << "Prewitt" << endl;
+            ImagePPM imageOut = prewittFilterPPM(imageIn);
+            fileColsAndRowsPPM(imageOut, fileOut);
+        } else if (flag2.find("3") != std::string::npos) {
+            cout << "Robert" << endl;
+            ImagePPM imageOut = robertFilterPPM(imageIn);
+            fileColsAndRowsPPM(imageOut, fileOut);
+        }
+
+    } else if (flag2.find("-rs") != std::string::npos) {
+        cout << "Zmiana rozdzielczonsci" << endl;
+
+    } else if (flag2.find("-b") != std::string::npos) {
+        cout << "Rozmycie obrazu" << endl;
+        ImagePPM imageOut = gaussFilterPPM(imageIn);
+        fileColsAndRowsPPM(imageOut, fileOut);
+
+    } else if (flag2.find("-dn") != std::string::npos) {
+        cout << "Odszumianie obrazu" << endl;
+
+    } else if (flag2.find("-ib") != std::string::npos) {
+        cout << "Odszumianie obrazu" << endl;
+
+    } else if (flag2.find("-e") != std::string::npos) {
+        cout << "Erozja obrazu" << endl;
+        ImagePPM imageOut = erosionPPM(imageIn);
+        fileColsAndRowsPPM(imageOut, fileOut);
+
+    } else if (flag2.find("-d") != std::string::npos) {
+        cout << "Dylatacja obrazu" << endl;
+
+
+    } else if (flag2.find("-r") != std::string::npos) {
+        cout << "Obracanie obrazu" << endl;
+
+    }  else if (flag2.find("-h") != std::string::npos) {
+        cout << "Pomoc" << endl;
+
+    }  else {
+        cout << "Pomoc" << endl;
+
+    }
+}
+
+void fileColsAndRows(Image imageOut, string fileOut) {
+    ofstream ofile(fileOut, std::ios::out);
+
+    ofile << "P2\n" << imageOut.cols << " " << imageOut.rows << "\n255\n";
+    for (int i = 0; i < imageOut.rows; i++) {
+        for (int j = 0; j < imageOut.cols; j++) {
+            ofile << imageOut.getPixelVal(i, j) << endl;
         }
     }
-
 }
 
-void menuBMP(string flag) {
-    string fileName = "";
-    ofstream ofile("output.pgm", std::ios::out);
+void fileColsAndRowsPPM(ImagePPM imageOut, string fileOut) {
+    ofstream ofilePPM(fileOut, std::ios::out);
 
-   cout << "test";
+    ofilePPM << "P3\n" << imageOut.cols << " " << imageOut.rows << "\n255\n";
+    for (int i = 0; i < imageOut.rows; i++) {
+        for (int j = 0; j < imageOut.cols; j++) {
+            ofilePPM << imageOut.getPixelValR(i, j) << " " << imageOut.getPixelValB(i, j) << " " << imageOut.getPixelValG(i, j) << endl;
+        }
+    }
 }
 
-void writeBMP2(string filename, BMP image) {
+/*
+ *
+ * void writeBMP2(string filename, BMP image) {
     string fileName = filename;
     FILE *out = fopen(fileName.c_str(), "wb");
     fwrite(image.header, sizeof(unsigned char), 54, out);
@@ -212,7 +319,7 @@ BMP rotate180Degree(BMP image, double degree) {
     return newImage;
 }
 
-BMP readBMP(string filename) {
+BMP readBMP3(string filename) {
     BMP image;
     int i;
     string fileName = filename;
@@ -237,7 +344,7 @@ BMP readBMP(string filename) {
     return image;
 }
 
-void writeBMP(string filename, BMP image) {
+void writeBMP3(string filename, BMP image) {
     string fileName = filename;
     FILE *out = fopen(fileName.c_str(), "wb");
     fwrite(image.header, sizeof(unsigned char), 54, out);
@@ -252,7 +359,7 @@ void writeBMP(string filename, BMP image) {
     fclose(out);
 }
 
-BMP negatyw(BMP image) {
+BMP negatyw3(BMP image) {
     BMP newImage = image;
     unsigned char *pixels = new unsigned char[image.size];
 
@@ -299,3 +406,5 @@ BMP rotate(BMP image, double degree) {
 
     return newImage;
 }
+
+ */

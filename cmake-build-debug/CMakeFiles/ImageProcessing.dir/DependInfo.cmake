@@ -9,6 +9,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "C:/Users/brAiN/CLionProjects/ImageProcessing/Image.cpp" "CMakeFiles/ImageProcessing.dir/Image.cpp.obj" "gcc" "CMakeFiles/ImageProcessing.dir/Image.cpp.obj.d"
+  "C:/Users/brAiN/CLionProjects/ImageProcessing/ImageOperaBMP.cpp" "CMakeFiles/ImageProcessing.dir/ImageOperaBMP.cpp.obj" "gcc" "CMakeFiles/ImageProcessing.dir/ImageOperaBMP.cpp.obj.d"
+  "C:/Users/brAiN/CLionProjects/ImageProcessing/ImagePPM.cpp" "CMakeFiles/ImageProcessing.dir/ImagePPM.cpp.obj" "gcc" "CMakeFiles/ImageProcessing.dir/ImagePPM.cpp.obj.d"
   "C:/Users/brAiN/CLionProjects/ImageProcessing/main.cpp" "CMakeFiles/ImageProcessing.dir/main.cpp.obj" "gcc" "CMakeFiles/ImageProcessing.dir/main.cpp.obj.d"
   )
 

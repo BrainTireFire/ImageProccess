@@ -152,6 +152,54 @@ Image.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ImageProcessing.dir\build.make CMakeFiles/ImageProcessing.dir/Image.cpp.s
 .PHONY : Image.cpp.s
 
+ImageOperaBMP.obj: ImageOperaBMP.cpp.obj
+.PHONY : ImageOperaBMP.obj
+
+# target to build an object file
+ImageOperaBMP.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ImageProcessing.dir\build.make CMakeFiles/ImageProcessing.dir/ImageOperaBMP.cpp.obj
+.PHONY : ImageOperaBMP.cpp.obj
+
+ImageOperaBMP.i: ImageOperaBMP.cpp.i
+.PHONY : ImageOperaBMP.i
+
+# target to preprocess a source file
+ImageOperaBMP.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ImageProcessing.dir\build.make CMakeFiles/ImageProcessing.dir/ImageOperaBMP.cpp.i
+.PHONY : ImageOperaBMP.cpp.i
+
+ImageOperaBMP.s: ImageOperaBMP.cpp.s
+.PHONY : ImageOperaBMP.s
+
+# target to generate assembly for a file
+ImageOperaBMP.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ImageProcessing.dir\build.make CMakeFiles/ImageProcessing.dir/ImageOperaBMP.cpp.s
+.PHONY : ImageOperaBMP.cpp.s
+
+ImagePPM.obj: ImagePPM.cpp.obj
+.PHONY : ImagePPM.obj
+
+# target to build an object file
+ImagePPM.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ImageProcessing.dir\build.make CMakeFiles/ImageProcessing.dir/ImagePPM.cpp.obj
+.PHONY : ImagePPM.cpp.obj
+
+ImagePPM.i: ImagePPM.cpp.i
+.PHONY : ImagePPM.i
+
+# target to preprocess a source file
+ImagePPM.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ImageProcessing.dir\build.make CMakeFiles/ImageProcessing.dir/ImagePPM.cpp.i
+.PHONY : ImagePPM.cpp.i
+
+ImagePPM.s: ImagePPM.cpp.s
+.PHONY : ImagePPM.s
+
+# target to generate assembly for a file
+ImagePPM.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ImageProcessing.dir\build.make CMakeFiles/ImageProcessing.dir/ImagePPM.cpp.s
+.PHONY : ImagePPM.cpp.s
+
 main.obj: main.cpp.obj
 .PHONY : main.obj
 
@@ -188,6 +236,12 @@ help:
 	@echo ... Image.obj
 	@echo ... Image.i
 	@echo ... Image.s
+	@echo ... ImageOperaBMP.obj
+	@echo ... ImageOperaBMP.i
+	@echo ... ImageOperaBMP.s
+	@echo ... ImagePPM.obj
+	@echo ... ImagePPM.i
+	@echo ... ImagePPM.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

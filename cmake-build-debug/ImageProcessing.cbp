@@ -88,7 +88,25 @@
 		<Unit filename="C:/Users/brAiN/CLionProjects/ImageProcessing/Image.cpp">
 			<Option target="ImageProcessing"/>
 		</Unit>
+		<Unit filename="C:/Users/brAiN/CLionProjects/ImageProcessing/ImageOperaBMP.cpp">
+			<Option target="ImageProcessing"/>
+		</Unit>
+		<Unit filename="C:/Users/brAiN/CLionProjects/ImageProcessing/ImageOperaBMP.h">
+			<Option target="ImageProcessing"/>
+		</Unit>
+		<Unit filename="C:/Users/brAiN/CLionProjects/ImageProcessing/ImageOperaPPM.hpp">
+			<Option target="ImageProcessing"/>
+		</Unit>
 		<Unit filename="C:/Users/brAiN/CLionProjects/ImageProcessing/ImageOperations.hpp">
+			<Option target="ImageProcessing"/>
+		</Unit>
+		<Unit filename="C:/Users/brAiN/CLionProjects/ImageProcessing/ImageOperationsBMP.hpp">
+			<Option target="ImageProcessing"/>
+		</Unit>
+		<Unit filename="C:/Users/brAiN/CLionProjects/ImageProcessing/ImagePPM.cpp">
+			<Option target="ImageProcessing"/>
+		</Unit>
+		<Unit filename="C:/Users/brAiN/CLionProjects/ImageProcessing/ImagePPM.h">
 			<Option target="ImageProcessing"/>
 		</Unit>
 		<Unit filename="C:/Users/brAiN/CLionProjects/ImageProcessing/main.cpp">

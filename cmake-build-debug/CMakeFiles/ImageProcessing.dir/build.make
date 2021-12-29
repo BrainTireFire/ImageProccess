@@ -96,21 +96,53 @@ CMakeFiles/ImageProcessing.dir/Image.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ImageProcessing.dir/Image.cpp.s"
 	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\brAiN\CLionProjects\ImageProcessing\Image.cpp -o CMakeFiles\ImageProcessing.dir\Image.cpp.s
 
+CMakeFiles/ImageProcessing.dir/ImageOperaBMP.cpp.obj: CMakeFiles/ImageProcessing.dir/flags.make
+CMakeFiles/ImageProcessing.dir/ImageOperaBMP.cpp.obj: ../ImageOperaBMP.cpp
+CMakeFiles/ImageProcessing.dir/ImageOperaBMP.cpp.obj: CMakeFiles/ImageProcessing.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\brAiN\CLionProjects\ImageProcessing\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/ImageProcessing.dir/ImageOperaBMP.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ImageProcessing.dir/ImageOperaBMP.cpp.obj -MF CMakeFiles\ImageProcessing.dir\ImageOperaBMP.cpp.obj.d -o CMakeFiles\ImageProcessing.dir\ImageOperaBMP.cpp.obj -c C:\Users\brAiN\CLionProjects\ImageProcessing\ImageOperaBMP.cpp
+
+CMakeFiles/ImageProcessing.dir/ImageOperaBMP.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ImageProcessing.dir/ImageOperaBMP.cpp.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\brAiN\CLionProjects\ImageProcessing\ImageOperaBMP.cpp > CMakeFiles\ImageProcessing.dir\ImageOperaBMP.cpp.i
+
+CMakeFiles/ImageProcessing.dir/ImageOperaBMP.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ImageProcessing.dir/ImageOperaBMP.cpp.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\brAiN\CLionProjects\ImageProcessing\ImageOperaBMP.cpp -o CMakeFiles\ImageProcessing.dir\ImageOperaBMP.cpp.s
+
+CMakeFiles/ImageProcessing.dir/ImagePPM.cpp.obj: CMakeFiles/ImageProcessing.dir/flags.make
+CMakeFiles/ImageProcessing.dir/ImagePPM.cpp.obj: ../ImagePPM.cpp
+CMakeFiles/ImageProcessing.dir/ImagePPM.cpp.obj: CMakeFiles/ImageProcessing.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\brAiN\CLionProjects\ImageProcessing\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/ImageProcessing.dir/ImagePPM.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ImageProcessing.dir/ImagePPM.cpp.obj -MF CMakeFiles\ImageProcessing.dir\ImagePPM.cpp.obj.d -o CMakeFiles\ImageProcessing.dir\ImagePPM.cpp.obj -c C:\Users\brAiN\CLionProjects\ImageProcessing\ImagePPM.cpp
+
+CMakeFiles/ImageProcessing.dir/ImagePPM.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ImageProcessing.dir/ImagePPM.cpp.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\brAiN\CLionProjects\ImageProcessing\ImagePPM.cpp > CMakeFiles\ImageProcessing.dir\ImagePPM.cpp.i
+
+CMakeFiles/ImageProcessing.dir/ImagePPM.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ImageProcessing.dir/ImagePPM.cpp.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\brAiN\CLionProjects\ImageProcessing\ImagePPM.cpp -o CMakeFiles\ImageProcessing.dir\ImagePPM.cpp.s
+
 # Object files for target ImageProcessing
 ImageProcessing_OBJECTS = \
 "CMakeFiles/ImageProcessing.dir/main.cpp.obj" \
-"CMakeFiles/ImageProcessing.dir/Image.cpp.obj"
+"CMakeFiles/ImageProcessing.dir/Image.cpp.obj" \
+"CMakeFiles/ImageProcessing.dir/ImageOperaBMP.cpp.obj" \
+"CMakeFiles/ImageProcessing.dir/ImagePPM.cpp.obj"
 
 # External object files for target ImageProcessing
 ImageProcessing_EXTERNAL_OBJECTS =
 
 ImageProcessing.exe: CMakeFiles/ImageProcessing.dir/main.cpp.obj
 ImageProcessing.exe: CMakeFiles/ImageProcessing.dir/Image.cpp.obj
+ImageProcessing.exe: CMakeFiles/ImageProcessing.dir/ImageOperaBMP.cpp.obj
+ImageProcessing.exe: CMakeFiles/ImageProcessing.dir/ImagePPM.cpp.obj
 ImageProcessing.exe: CMakeFiles/ImageProcessing.dir/build.make
 ImageProcessing.exe: CMakeFiles/ImageProcessing.dir/linklibs.rsp
 ImageProcessing.exe: CMakeFiles/ImageProcessing.dir/objects1.rsp
 ImageProcessing.exe: CMakeFiles/ImageProcessing.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\brAiN\CLionProjects\ImageProcessing\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable ImageProcessing.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\brAiN\CLionProjects\ImageProcessing\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable ImageProcessing.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\ImageProcessing.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

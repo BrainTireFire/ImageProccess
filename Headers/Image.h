@@ -11,12 +11,11 @@ public:
     Image(int numRows, int numCols, int grayLevels);
     ~Image();
     Image(const Image& orig);
-    //void setImageInfo(int numRows, int numCols, int maxVal);
-    //void getImageInfo(int &numRows, int &numCols, int &maxVal);
     int getPixelVal(int row, int col);
     void setPixelVal(int row, int col, int value);
     bool inBounds(int row, int col);
     Image threshold(int threshold); //binarize a grayscale image
+    Image otsuBinarize();
 
     int rows;       //number of rows
     int cols;       //number of columns
