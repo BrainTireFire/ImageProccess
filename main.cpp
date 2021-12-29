@@ -2,9 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "Headers/Image.h"
-#include "ImageOperations.hpp"
-#include "ImageOperationsBMP.hpp"
-#include "ImageOperaBMP.h"
+#include "ImageOperaPGM.hpp"
 #include "ImageOperaPPM.hpp"
 #include "ImagePPM.h"
 #include <algorithm>
@@ -19,7 +17,6 @@ struct File {
     string fileNameIn;
 };
 
-ImageOperaBMP fileCreateBMP(string fileNameIn, string fileNameOut);
 void fileColsAndRows(Image imageOut, string fileOut);
 void menuPGM(string flag, string fileOut);
 void menuPPM(string flag, string fileOut);
@@ -97,7 +94,7 @@ void menuPGM(string flag, string fileOut) {
     cout << flag2;
 
     if (flag2.find("-n") != std::string::npos) {
-        cout << "Negatyw" << endl;;
+        cout << "Negatyw" << endl;
         Image imageOut = negative(imageIn);
         fileColsAndRows(imageOut, fileOut);
 
@@ -126,9 +123,13 @@ void menuPGM(string flag, string fileOut) {
 
     } else if (flag2.find("-dn") != std::string::npos) {
         cout << "Odszumianie obrazu" << endl;
+        Image imageOut=smoothingFilter(imageIn);
+        fileColsAndRows(imageOut, fileOut);
 
     } else if (flag2.find("-ib") != std::string::npos) {
-        cout << "Odszumianie obrazu" << endl;
+        cout << "Obraz binarny" << endl;
+        Image imageOut = imageIn.otsuBinarize();
+        fileColsAndRows(imageOut, fileOut);
 
     } else if (flag2.find("-e") != std::string::npos) {
         cout << "Erozja obrazu" << endl;
@@ -141,13 +142,37 @@ void menuPGM(string flag, string fileOut) {
 
     } else if (flag2.find("-r") != std::string::npos) {
         cout << "Obracanie obrazu" << endl;
+        Image imageOut = rotatePGM(imageIn);
+        fileColsAndRows(imageOut, fileOut);
 
     }  else if (flag2.find("-h") != std::string::npos) {
         cout << "Pomoc" << endl;
-
-
+        cout << "Komendy:" << endl;
+        cout << "-i lokalizacja pliku - wskazuje plik bazujacy" << endl;
+        cout << "-o lokalizacja pliku - wskazuje plik wyjsciowy " << endl;
+        cout << "-n - Negatyw obrazu " << endl;
+        cout << "-g liczba - Gradien obrazu, liczba chodiz ktory wybrac sposob" << endl;
+        cout << "-rs rodzielczosc - zmiana rodzielczosci" << endl;
+        cout << "-b liczba - rozmycie obrazu, liczba okresla rodziaj filtra" << endl;
+        cout << "-dn liczba - rozmycie obrazu, , liczba okresla rodziaj filtr" << endl;
+        cout << "-ib - tworzneie obrazu binarnego obrazu" << endl;
+        cout << "-e - erozja obrazu" << endl;
+        cout << "-d - dyletacja obrazu" << endl;
+        cout << "-r kat - obracanie obrazu, kat o jaki kat" << endl;
     }  else {
         cout << "Pomoc" << endl;
+        cout << "Komendy:" << endl;
+        cout << "-i lokalizacja pliku - wskazuje plik bazujacy" << endl;
+        cout << "-o lokalizacja pliku - wskazuje plik wyjsciowy " << endl;
+        cout << "-n - Negatyw obrazu " << endl;
+        cout << "-g liczba - Gradien obrazu, liczba chodiz ktory wybrac sposob" << endl;
+        cout << "-rs rodzielczosc - zmiana rodzielczosci" << endl;
+        cout << "-b liczba - rozmycie obrazu, liczba okresla rodziaj filtra" << endl;
+        cout << "-dn liczba - rozmycie obrazu, , liczba okresla rodziaj filtr" << endl;
+        cout << "-ib - tworzneie obrazu binarnego obrazu" << endl;
+        cout << "-e - erozja obrazu" << endl;
+        cout << "-d - dyletacja obrazu" << endl;
+        cout << "-r kat - obracanie obrazu, kat o jaki kat" << endl;
 
     }
 }
@@ -167,7 +192,7 @@ void menuPPM(string flag, string fileOut) {
     getline(cin, flag2);
 
     if (flag2.find("-n") != std::string::npos) {
-        cout << "Negatyw" << endl;;
+        cout << "Negatyw" << endl;
         ImagePPM imageOut = negativePPM(imageIn);
         fileColsAndRowsPPM(imageOut, fileOut);
 
@@ -198,7 +223,9 @@ void menuPPM(string flag, string fileOut) {
         cout << "Odszumianie obrazu" << endl;
 
     } else if (flag2.find("-ib") != std::string::npos) {
-        cout << "Odszumianie obrazu" << endl;
+        cout << "Obraz binarny" << endl;
+        ImagePPM imageOut = imageIn.otsuBinarize();
+        fileColsAndRowsPPM(imageOut, fileOut);
 
     } else if (flag2.find("-e") != std::string::npos) {
         cout << "Erozja obrazu" << endl;
@@ -214,9 +241,33 @@ void menuPPM(string flag, string fileOut) {
 
     }  else if (flag2.find("-h") != std::string::npos) {
         cout << "Pomoc" << endl;
+        cout << "Komendy:" << endl;
+        cout << "-i lokalizacja pliku - wskazuje plik bazujacy" << endl;
+        cout << "-o lokalizacja pliku - wskazuje plik wyjsciowy " << endl;
+        cout << "-n - Negatyw obrazu " << endl;
+        cout << "-g liczba - Gradien obrazu, liczba chodiz ktory wybrac sposob" << endl;
+        cout << "-rs rodzielczosc - zmiana rodzielczosci" << endl;
+        cout << "-b liczba - rozmycie obrazu, liczba okresla rodziaj filtra" << endl;
+        cout << "-dn liczba - rozmycie obrazu, , liczba okresla rodziaj filtr" << endl;
+        cout << "-ib - tworzneie obrazu binarnego obrazu" << endl;
+        cout << "-e - erozja obrazu" << endl;
+        cout << "-d - dyletacja obrazu" << endl;
+        cout << "-r kat - obracanie obrazu, kat o jaki kat" << endl;
 
     }  else {
         cout << "Pomoc" << endl;
+        cout << "Komendy:" << endl;
+        cout << "-i lokalizacja pliku - wskazuje plik bazujacy" << endl;
+        cout << "-o lokalizacja pliku - wskazuje plik wyjsciowy " << endl;
+        cout << "-n - Negatyw obrazu " << endl;
+        cout << "-g liczba - Gradien obrazu, liczba chodiz ktory wybrac sposob" << endl;
+        cout << "-rs rodzielczosc - zmiana rodzielczosci" << endl;
+        cout << "-b liczba - rozmycie obrazu, liczba okresla rodziaj filtra" << endl;
+        cout << "-dn liczba - rozmycie obrazu, , liczba okresla rodziaj filtr" << endl;
+        cout << "-ib - tworzneie obrazu binarnego obrazu" << endl;
+        cout << "-e - erozja obrazu" << endl;
+        cout << "-d - dyletacja obrazu" << endl;
+        cout << "-r kat - obracanie obrazu, kat o jaki kat" << endl;
 
     }
 }

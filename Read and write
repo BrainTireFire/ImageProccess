@@ -74,7 +74,7 @@ void ImageWriter(const char *imgName, unsigned char *header, unsigned char *colo
 #include <stdio.h>
 #include <stdlib.h>
 #include "Headers/Image.h"
-#include "ImageOperations.hpp"
+#include "ImageOperaPGM.hpp"
 
 #include <crtdbg.h>
 

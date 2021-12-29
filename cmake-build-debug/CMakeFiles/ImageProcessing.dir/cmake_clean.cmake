@@ -1,8 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/ImageProcessing.dir/Image.cpp.obj"
   "CMakeFiles/ImageProcessing.dir/Image.cpp.obj.d"
-  "CMakeFiles/ImageProcessing.dir/ImageOperaBMP.cpp.obj"
-  "CMakeFiles/ImageProcessing.dir/ImageOperaBMP.cpp.obj.d"
   "CMakeFiles/ImageProcessing.dir/ImagePPM.cpp.obj"
   "CMakeFiles/ImageProcessing.dir/ImagePPM.cpp.obj.d"
   "CMakeFiles/ImageProcessing.dir/main.cpp.obj"

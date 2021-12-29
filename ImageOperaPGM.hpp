@@ -90,23 +90,6 @@ T clamp(T value, T lower_bound, T upper_bound) {
     value = std::min(std::max(value, lower_bound), upper_bound);
 }
 
-Image rotateImage(Image& image, double ang) {
-    Image newImage = Image(image.rows, image.cols, image.gray);
-    int pixel = 0;
-
-    for (int i = 0; i < image.rows; i++) {
-        for (int j = 0; j < image.cols  ;j++) {
-            pixel = image.getPixelVal(i, j);
-            newImage.setPixelVal((cos(-ang), -sin(-ang), newImage.cols/2 - image.cols*cos(-ang)/2)
-                    , (sin(-ang),  cos(-ang), newImage.rows/2 - image.rows*cos(-ang)/2), pixel);
-        }
-    }
-
-    return newImage;
-
-}
-
-
 Image mirror(Image& image) {
     Image newImage = Image(image.rows, image.cols, image.gray);
     int pixel =0;
@@ -365,6 +348,15 @@ Image linearFilter(Image& im, double sMin, double sMax) {
     return newImage;
 }
 
+Image smoothingFilter(Image& im) {
+    double kern[3][3] = {
+            {1, 1, 1},
+            {1, 1, 1},
+            {1, 1, 1}
+    };
+    return (convolution(im, kern, 3, 9));
+}
+
 Image negative(Image& im) {
     Image newImage = Image(im.rows, im.cols, im.gray);
     int val = 0, pixel = 0;
@@ -376,6 +368,35 @@ Image negative(Image& im) {
             newImage.setPixelVal(i, j, val);
         }
 
+    }
+
+    return newImage;
+}
+
+Image rotatePGM(Image& im) {
+    Image newImage = Image(im.rows, im.cols, im.gray);
+    int pixel = 0;
+
+    for (int i = 0; i < im.rows; i++) {
+        for (int j = 0; j < im.cols; j++) {
+            pixel = im.getPixelVal(i, j);
+            newImage.setPixelVal(i, im.cols*i, pixel);
+        }
+
+    }
+    return newImage;
+}
+
+Image rotateImage(Image& image, double ang) {
+    Image newImage = Image(image.rows, image.cols, image.gray);
+    int pixel = 0;
+
+    for (int i = 0; i < image.rows; i++) {
+        for (int j = 0; j < image.cols  ;j++) {
+            pixel = image.getPixelVal(i, j);
+            newImage.setPixelVal((cos(-ang), -sin(-ang), newImage.cols/2 - image.cols*cos(-ang)/2)
+                    , (sin(-ang),  cos(-ang), newImage.rows/2 - image.rows*cos(-ang)/2), pixel);
+        }
     }
 
     return newImage;

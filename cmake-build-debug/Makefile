@@ -152,30 +152,6 @@ Image.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ImageProcessing.dir\build.make CMakeFiles/ImageProcessing.dir/Image.cpp.s
 .PHONY : Image.cpp.s
 
-ImageOperaBMP.obj: ImageOperaBMP.cpp.obj
-.PHONY : ImageOperaBMP.obj
-
-# target to build an object file
-ImageOperaBMP.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ImageProcessing.dir\build.make CMakeFiles/ImageProcessing.dir/ImageOperaBMP.cpp.obj
-.PHONY : ImageOperaBMP.cpp.obj
-
-ImageOperaBMP.i: ImageOperaBMP.cpp.i
-.PHONY : ImageOperaBMP.i
-
-# target to preprocess a source file
-ImageOperaBMP.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ImageProcessing.dir\build.make CMakeFiles/ImageProcessing.dir/ImageOperaBMP.cpp.i
-.PHONY : ImageOperaBMP.cpp.i
-
-ImageOperaBMP.s: ImageOperaBMP.cpp.s
-.PHONY : ImageOperaBMP.s
-
-# target to generate assembly for a file
-ImageOperaBMP.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ImageProcessing.dir\build.make CMakeFiles/ImageProcessing.dir/ImageOperaBMP.cpp.s
-.PHONY : ImageOperaBMP.cpp.s
-
 ImagePPM.obj: ImagePPM.cpp.obj
 .PHONY : ImagePPM.obj
 
@@ -236,9 +212,6 @@ help:
 	@echo ... Image.obj
 	@echo ... Image.i
 	@echo ... Image.s
-	@echo ... ImageOperaBMP.obj
-	@echo ... ImageOperaBMP.i
-	@echo ... ImageOperaBMP.s
 	@echo ... ImagePPM.obj
 	@echo ... ImagePPM.i
 	@echo ... ImagePPM.s
