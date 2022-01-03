@@ -26,6 +26,9 @@
 using namespace std;
 const int SIZE2 = 3;
 
+/**
+ * Wczytuje plik o formacie ppm
+ */
 ImagePPM readImage2(char fileName[])
 {
     int i, j;
